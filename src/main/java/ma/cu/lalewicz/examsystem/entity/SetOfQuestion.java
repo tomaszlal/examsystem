@@ -13,5 +13,9 @@ public class SetOfQuestion {
     @ManyToMany
     private List<TestQuestion> questionList;
 
+    @OneToMany(mappedBy = "setOfQuestion")
+    private List<TestExam> testExams;
+
+
 
 }

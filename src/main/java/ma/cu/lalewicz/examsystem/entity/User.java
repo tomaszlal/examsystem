@@ -1,9 +1,7 @@
 package ma.cu.lalewicz.examsystem.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,5 +12,7 @@ public class User {
     private String name;
     private String passwd;
 
+    @OneToMany(mappedBy = "user")
+    private List<TestExam> testExams;
 
 }
