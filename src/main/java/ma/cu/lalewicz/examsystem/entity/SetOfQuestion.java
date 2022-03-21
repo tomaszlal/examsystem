@@ -16,6 +16,31 @@ public class SetOfQuestion {
     @OneToMany(mappedBy = "setOfQuestion")
     private List<TestExam> testExams;
 
+    public SetOfQuestion() {
+    }
 
+    public SetOfQuestion(List<TestQuestion> questionList, List<TestExam> testExams) {
+        this.questionList = questionList;
+        this.testExams = testExams;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public List<TestQuestion> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(List<TestQuestion> questionList) {
+        this.questionList = questionList;
+    }
+
+    public List<TestExam> getTestExams() {
+        return testExams;
+    }
+
+    public void setTestExams(List<TestExam> testExams) {
+        this.testExams = testExams;
+    }
 }
