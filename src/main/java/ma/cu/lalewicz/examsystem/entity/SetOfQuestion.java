@@ -24,6 +24,10 @@ public class SetOfQuestion {
         this.testExams = testExams;
     }
 
+    public SetOfQuestion(List<TestQuestion> questionList) {
+        this.questionList = questionList;
+    }
+
     public Long getId() {
         return id;
     }

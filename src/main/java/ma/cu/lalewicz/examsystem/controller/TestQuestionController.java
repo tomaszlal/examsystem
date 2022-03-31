@@ -14,8 +14,10 @@ public class TestQuestionController {
     @Autowired
     private TestQuestionService testQuestionService;
 
-    @GetMapping("/test-questions")
+    @GetMapping("/questions")
     public List<TestQuestion> getAllQuestion( ) {
         return testQuestionService.getAllTestQuestion();
     }
+
+
 }

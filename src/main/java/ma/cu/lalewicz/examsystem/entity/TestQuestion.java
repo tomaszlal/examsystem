@@ -26,7 +26,7 @@ public class TestQuestion {
     @Column(nullable = false)
     private Integer score;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Category> categoryList;
 
     public TestQuestion() {

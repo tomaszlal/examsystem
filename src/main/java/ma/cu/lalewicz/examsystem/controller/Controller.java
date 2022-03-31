@@ -2,8 +2,10 @@ package ma.cu.lalewicz.examsystem.controller;
 
 
 import ma.cu.lalewicz.examsystem.entity.Category;
+import ma.cu.lalewicz.examsystem.entity.SetOfQuestion;
 import ma.cu.lalewicz.examsystem.entity.TestQuestion;
 import ma.cu.lalewicz.examsystem.service.CategoryService;
+import ma.cu.lalewicz.examsystem.service.SetOfQuestionService;
 import ma.cu.lalewicz.examsystem.service.TestQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,8 @@ public class Controller {
     private CategoryService categoryService;
     @Autowired
     private TestQuestionService testQuestionService;
+    @Autowired
+    private SetOfQuestionService setOfQuestionService;
 
     @PostConstruct
     public void createSampleData(){
@@ -31,6 +35,7 @@ public class Controller {
         categoryService.addNewCategory(new Category("INF.03","Pytania z zakresu kwalifikacji INF.03"));
         categoryService.addNewCategory(new Category("HTML","Pytania ze znajomośi HTML"));
         categoryService.addNewCategory(new Category("C++","Pytania z języka programowania C++"));
+        categoryService.addNewCategory(new Category("Java","Pytania z języka programowania Java"));
 
         //create testquestion
 
@@ -63,11 +68,55 @@ public class Controller {
         categories2.add(categoryService.getCategoryById(4l));
         testQuestion2.setCategoryList(categories2);
         testQuestionService.addTestQuestion(testQuestion2);
+
+        //create 3 testquestion
+        TestQuestion testQuestion3 = new TestQuestion();
+        testQuestion3.setQuestionContent("Pytanie testowe 3");
+        testQuestion3.setAnswerA("Odp A pytanie 3");
+        testQuestion3.setAnswerB("Odp B pytanie 3");
+        testQuestion3.setAnswerC("Odp C pytanie 3");
+        testQuestion3.setAnswerD("Odp D pytanie 3");
+        testQuestion3.setCorrectAnswer('A');
+        testQuestion3.setScore(2);
+        List<Category> categories3 = new ArrayList<>();
+        categories3.add(categoryService.getCategoryById(2l));
+        categories3.add(categoryService.getCategoryById(3l));
+        testQuestion3.setCategoryList(categories3);
+        testQuestionService.addTestQuestion(testQuestion3);
+
+        //create 4 testquestion
+        TestQuestion testQuestion4 = new TestQuestion();
+        testQuestion4.setQuestionContent("Pytanie testowe 4");
+        testQuestion4.setAnswerA("Odp A pytanie 4");
+        testQuestion4.setAnswerB("Odp B pytanie 4");
+        testQuestion4.setAnswerC("Odp C pytanie 4");
+        testQuestion4.setAnswerD("Odp D pytanie 4");
+        testQuestion4.setCorrectAnswer('D');
+        testQuestion4.setScore(3);
+        List<Category> categories4 = new ArrayList<>();
+        categories4.add(categoryService.getCategoryById(2l));
+        categories4.add(categoryService.getCategoryById(1l));
+        categories4.add(categoryService.getCategoryById(4l));
+        testQuestion4.setCategoryList(categories4);
+        testQuestionService.addTestQuestion(testQuestion4);
+
+
+        //create set of question
+        List<TestQuestion> testQuestionList = new ArrayList<>();
+        testQuestionList.add(testQuestion);
+        testQuestionList.add(testQuestion3);
+        SetOfQuestion setOfQuestion1 = new SetOfQuestion();
+        setOfQuestion1.setQuestionList(testQuestionList);
+        setOfQuestionService.addNewSetOfQuestion(setOfQuestion1);
+
+        //add category to test question
+
+        testQuestionService.addCategoryToTestQuestion(testQuestion.getId(), categoryService.getCategoryById(5l));
     }
 
     @GetMapping("/hello")
     public String hello(){
-        return "Hello I am a conttoller";
+        return "Hello I am a controller";
     }
 
 

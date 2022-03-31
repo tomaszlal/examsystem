@@ -45,7 +45,7 @@ public class CategoryService {
             List<Category> categoryList = question.getCategoryList();
             List<Category> newCategoryList = new ArrayList<>();
             for (Category category : categoryList) {
-                if (category.getId() != id) {
+                if (!category.getId().equals(id)) {
                     newCategoryList.add(category);
                 }
             }
@@ -53,8 +53,6 @@ public class CategoryService {
             newTestQuestions.add(question);
         }
         testQuestionDao.saveAll(newTestQuestions);
-
-
         //usuniecie kategorii
         categoryDao.deleteById(id);
     }
