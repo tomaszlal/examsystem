@@ -50,7 +50,7 @@ public class TestQuestionService {
     }
 
     public void deleteTestQuestion(Long id){
-        //usuniecie z seta pytania albo jezeli jest w secie to nie usuwanie
+        //usuniecie z seta pytania albo jezeli jest w secie to nie usuwanie do zastanowienia
         testQuestionDao.deleteById(id);
     }
 

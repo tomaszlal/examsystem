@@ -20,4 +20,17 @@ public class SetOfQuestionService {
     public List<SetOfQuestion> getAllSetOfQuestion(){
         return (List<SetOfQuestion>) setOfQuestionDao.findAll();
     }
+
+    public SetOfQuestion getSetOfQuestionById(Long id){
+        return setOfQuestionDao.findById(id).get();
+    }
+
+    public SetOfQuestion updateSetOfQuestion(SetOfQuestion setOfQuestion){
+        return setOfQuestionDao.save(setOfQuestion);
+    }
+
+    public void deleteSetOfQuestion(Long id){
+
+        setOfQuestionDao.deleteById(id);
+    }
 }
