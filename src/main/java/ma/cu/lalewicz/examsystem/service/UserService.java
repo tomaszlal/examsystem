@@ -14,4 +14,8 @@ public class UserService {
     public User addNewUser(User user){
         return userDao.save(user);
     }
+
+    public void deleteUser(Long id){
+        userDao.deleteById(id);
+    }
 }

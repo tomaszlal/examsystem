@@ -1,12 +1,9 @@
 package ma.cu.lalewicz.examsystem.controller;
 
 
-import ma.cu.lalewicz.examsystem.entity.Category;
-import ma.cu.lalewicz.examsystem.entity.SetOfQuestion;
-import ma.cu.lalewicz.examsystem.entity.TestQuestion;
-import ma.cu.lalewicz.examsystem.service.CategoryService;
-import ma.cu.lalewicz.examsystem.service.SetOfQuestionService;
-import ma.cu.lalewicz.examsystem.service.TestQuestionService;
+import ma.cu.lalewicz.examsystem.entity.*;
+import ma.cu.lalewicz.examsystem.enums.Status;
+import ma.cu.lalewicz.examsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +23,10 @@ public class Controller {
     private TestQuestionService testQuestionService;
     @Autowired
     private SetOfQuestionService setOfQuestionService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private TestExamService testExamService;
 
     @PostConstruct
     public void createSampleData(){
@@ -112,6 +113,26 @@ public class Controller {
         //add category to test question
 
         testQuestionService.addCategoryToTestQuestion(testQuestion.getId(), categoryService.getCategoryById(5l));
+
+        //add user to db
+
+        User user1 = new User();
+        user1.setName("tomasz");
+        user1.setPassword("12345");
+        User user2 = new User();
+        user2.setName("zenek");
+        user2.setPassword("12345");
+        userService.addNewUser(user1);
+        userService.addNewUser(user2);
+
+        //add test exam
+        TestExam testExam = new TestExam();
+        testExam.setSetOfQuestion(setOfQuestion1);
+        testExam.setUser(user1);
+        testExam.setStatus(Status.IN_PREPARATION);
+        testExam.setMaxPoints(20);
+        testExamService.addNewTestExam(testExam);
+
     }
 
     @GetMapping("/hello")

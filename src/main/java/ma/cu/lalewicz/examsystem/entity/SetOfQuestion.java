@@ -1,5 +1,7 @@
 package ma.cu.lalewicz.examsystem.entity;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class SetOfQuestion {
     private List<TestQuestion> questionList;
 
     @OneToMany(mappedBy = "setOfQuestion")
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
     private List<TestExam> testExams;
 
     public SetOfQuestion() {
@@ -47,4 +50,6 @@ public class SetOfQuestion {
     public void setTestExams(List<TestExam> testExams) {
         this.testExams = testExams;
     }
+
+
 }

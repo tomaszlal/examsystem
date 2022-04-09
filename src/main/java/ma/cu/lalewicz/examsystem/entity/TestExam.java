@@ -1,5 +1,9 @@
 package ma.cu.lalewicz.examsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import ma.cu.lalewicz.examsystem.enums.Status;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,9 +19,11 @@ public class TestExam {
     private Long id;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
     private User user;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
     private SetOfQuestion setOfQuestion;
 
     @ManyToMany
@@ -105,4 +111,6 @@ public class TestExam {
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
+
+
 }

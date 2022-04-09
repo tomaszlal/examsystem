@@ -1,5 +1,10 @@
 package ma.cu.lalewicz.examsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +18,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
     private List<TestExam> testExams;
 
     public User() {
@@ -55,4 +61,6 @@ public class User {
     public void setTestExams(List<TestExam> testExams) {
         this.testExams = testExams;
     }
+
+
 }
