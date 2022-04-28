@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class TestExam {
 
     @Id
@@ -19,14 +20,14 @@ public class TestExam {
     private Long id;
 
     @ManyToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
     private User user;
 
     @ManyToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
     private SetOfQuestion setOfQuestion;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Answer> answers;
 
     @Enumerated
@@ -111,6 +112,7 @@ public class TestExam {
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
+
 
 
 }

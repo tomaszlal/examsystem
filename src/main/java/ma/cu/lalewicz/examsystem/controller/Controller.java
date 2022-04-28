@@ -131,8 +131,13 @@ public class Controller {
         testExam.setUser(user1);
         testExam.setStatus(Status.IN_PREPARATION);
         testExam.setMaxPoints(20);
+        List<Answer> answerList = new ArrayList<>();
+        for (int i=0;i<setOfQuestion1.getQuestionList().size();i++){
+            answerList.add(new Answer(null));
+        }
+        testExam.setAnswers(answerList);
         testExamService.addNewTestExam(testExam);
-
+//        testExamService.insertNullAnswers(id);
     }
 
     @GetMapping("/hello")

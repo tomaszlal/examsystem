@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "set_of_question")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class SetOfQuestion {
 
     @Id
